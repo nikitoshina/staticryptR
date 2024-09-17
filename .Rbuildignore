@@ -3,3 +3,4 @@
 ^LICENSE\.md$
 ^\.github$
 ^\.pre-commit-config.yaml$
+^cran-comments\.md$
