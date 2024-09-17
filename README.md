@@ -30,7 +30,7 @@ So it would look something like this:
 
 ```r
 # encrypt.r
-staticryptr(
+staticryptR::staticryptr(
   files = "_output/",
   directory = ".",
   password = "yourverylongpassword",

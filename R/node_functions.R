@@ -10,9 +10,7 @@
 #'   Staticrypt globally using npm. If `force` is `FALSE`, it prompts the user
 #'   for confirmation before proceeding with the installation.
 #' @examples
-#' \dontrun{
-#' install_staticrypt()
-#' }
+#' try(install_staticrypt())
 #' @export
 install_staticrypt <- function(force = FALSE) {
   is_node_available()
@@ -63,9 +61,7 @@ is_staticrypt_available <- function() {
 #' @details This function verifies that Node.js, npm, and Staticrypt are installed
 #'   and available in the system PATH. It will attempt to install Staticrypt if it is not found.
 #' @examples
-#' \dontrun{
-#' check_system()
-#' }
+#' try(check_system())
 #' @export
 check_system <- function() {
   is_node_available()
