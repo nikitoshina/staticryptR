@@ -2,4 +2,4 @@
 
 export(check_system)
 export(install_staticrypt)
-export(staticrypt_wrapper)
+export(staticryptr)

@@ -17,7 +17,5 @@ This function verifies that Node.js, npm, and Staticrypt are installed
 and available in the system PATH. It will attempt to install Staticrypt if it is not found.
 }
 \examples{
-\dontrun{
-check_system()
-}
+try(check_system())
 }

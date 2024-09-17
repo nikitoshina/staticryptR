@@ -23,7 +23,5 @@ Staticrypt globally using npm. If \code{force} is \code{FALSE}, it prompts the u
 for confirmation before proceeding with the installation.
 }
 \examples{
-\dontrun{
-install_staticrypt()
-}
+try(install_staticrypt())
 }
