@@ -24,7 +24,7 @@ install_staticrypt <- function(force = FALSE) {
       return(FALSE)
     }
   }
-  result <- system("npm install -g staticrypt")
+  result <- system("npm install -g staticrypt@^3.0.0")
   if (result != 0) {
     stop("Failed to install Staticrypt. Please check your npm configuration.")
   }

@@ -54,81 +54,201 @@
 #'   short = TRUE,
 #'   recursive = TRUE
 #' )}
-staticrypt_wrapper <- function(files,
-                               directory = NULL,
-                               recursive = FALSE,
-                               password = NULL,
-                               short = FALSE,
-                               decrypt = FALSE,
-                               remember = NULL,
-                               salt = NULL,
-                               share = NULL,
-                               share_remember = FALSE,
-                               config = NULL,
-                               template = NULL,
-                               template_button = NULL,
-                               template_color_primary = NULL,
-                               template_color_secondary = NULL,
-                               template_instructions = NULL,
-                               template_error = NULL,
-                               template_placeholder = NULL,
-                               template_remember = NULL,
-                               template_title = NULL,
-                               template_toggle_hide = NULL,
-                               template_toggle_show = NULL,
-                               print_cmd = FALSE,
-                               user_string = NULL) {
+staticryptr <- function(files,
+                        directory = NULL,
+                        recursive = FALSE,
+                        password = NULL,
+                        short = FALSE,
+                        decrypt = FALSE,
+                        remember = NULL,
+                        salt = NULL,
+                        share = NULL,
+                        share_remember = FALSE,
+                        config = NULL,
+                        template = NULL,
+                        template_button = NULL,
+                        template_color_primary = NULL,
+                        template_color_secondary = NULL,
+                        template_instructions = NULL,
+                        template_error = NULL,
+                        template_placeholder = NULL,
+                        template_remember = NULL,
+                        template_title = NULL,
+                        template_toggle_hide = NULL,
+                        template_toggle_show = NULL,
+                        print_cmd = FALSE,
+                        user_string = NULL) {
     # Type checking
-    if (!is.character(files)) stop("files must be a character vector.")
-    if (!is.null(config) && !is.character(config)) stop("config must be a character string or NULL.")
-    if (!is.null(directory) && !is.character(directory)) stop("directory must be a character string or NULL.")
-    if (!is.logical(decrypt)) stop("decrypt must be a boolean.")
-    if (!is.null(password) && !is.character(password)) stop("password must be a character string or NULL.")
-    if (!is.logical(recursive)) stop("recursive must be a boolean.")
-    if (!is.null(remember) && (!is.numeric(remember) || remember < 0)) stop("remember must be a non-negative integer or NULL.")
-    if (!is.null(salt) && (!is.character(salt) || nchar(salt) != 32)) stop("salt must be a 32-character hexadecimal string or NULL.")
-    if (!is.null(share) && !is.character(share)) stop("share must be a character string or NULL.")
-    if (!is.logical(share_remember)) stop("share_remember must be a boolean.")
-    if (!is.logical(short)) stop("short must be a boolean.")
-    if (!is.null(template) && !is.character(template)) stop("template must be a character string or NULL.")
-    if (!is.null(template_button) && !is.character(template_button)) stop("template_button must be a character string or NULL.")
-    if (!is.null(template_color_primary) && !is.character(template_color_primary)) stop("template_color_primary must be a character string or NULL.")
-    if (!is.null(template_color_secondary) && !is.character(template_color_secondary)) stop("template_color_secondary must be a character string or NULL.")
-    if (!is.null(template_instructions) && !is.character(template_instructions)) stop("template_instructions must be a character string or NULL.")
-    if (!is.null(template_error) && !is.character(template_error)) stop("template_error must be a character string or NULL.")
-    if (!is.null(template_placeholder) && !is.character(template_placeholder)) stop("template_placeholder must be a character string or NULL.")
-    if (!is.null(template_remember) && !is.character(template_remember)) stop("template_remember must be a character string or NULL.")
-    if (!is.null(template_title) && !is.character(template_title)) stop("template_title must be a character string or NULL.")
-    if (!is.null(template_toggle_hide) && !is.character(template_toggle_hide)) stop("template_toggle_hide must be a character string or NULL.")
-    if (!is.null(template_toggle_show) && !is.character(template_toggle_show)) stop("template_toggle_show must be a character string or NULL.")
-    if (!is.logical(print_cmd)) stop("print_cmd must be a boolean.")
-    if (!is.null(user_string) && !is.character(user_string)) stop("user_string must be a character string or NULL.")
+    if (!is.character(files))
+        stop("files must be a character vector.")
+    if (!is.null(config) &&
+        !is.character(config))
+        stop("config must be a character string or NULL.")
+    if (!is.null(directory) &&
+        !is.character(directory))
+        stop("directory must be a character string or NULL.")
+    if (!is.logical(decrypt))
+        stop("decrypt must be a boolean.")
+    if (!is.null(password) &&
+        !is.character(password))
+        stop("password must be a character string or NULL.")
+    if (!is.logical(recursive))
+        stop("recursive must be a boolean.")
+    if (!is.null(remember) &&
+        (!is.numeric(remember) ||
+         remember < 0))
+        stop("remember must be a non-negative integer or NULL.")
+    if (!is.null(salt) &&
+        (!is.character(salt) ||
+         nchar(salt) != 32))
+        stop("salt must be a 32-character hexadecimal string or NULL.")
+    if (!is.null(share) &&
+        !is.character(share))
+        stop("share must be a character string or NULL.")
+    if (!is.logical(share_remember))
+        stop("share_remember must be a boolean.")
+    if (!is.logical(short))
+        stop("short must be a boolean.")
+    if (!is.null(template) &&
+        !is.character(template))
+        stop("template must be a character string or NULL.")
+    if (!is.null(template_button) &&
+        !is.character(template_button))
+        stop("template_button must be a character string or NULL.")
+    if (!is.null(template_color_primary) &&
+        !is.character(template_color_primary))
+        stop("template_color_primary must be a character string or NULL.")
+    if (!is.null(template_color_secondary) &&
+        !is.character(template_color_secondary))
+        stop("template_color_secondary must be a character string or NULL.")
+    if (!is.null(template_instructions) &&
+        !is.character(template_instructions))
+        stop("template_instructions must be a character string or NULL.")
+    if (!is.null(template_error) &&
+        !is.character(template_error))
+        stop("template_error must be a character string or NULL.")
+    if (!is.null(template_placeholder) &&
+        !is.character(template_placeholder))
+        stop("template_placeholder must be a character string or NULL.")
+    if (!is.null(template_remember) &&
+        !is.character(template_remember))
+        stop("template_remember must be a character string or NULL.")
+    if (!is.null(template_title) &&
+        !is.character(template_title))
+        stop("template_title must be a character string or NULL.")
+    if (!is.null(template_toggle_hide) &&
+        !is.character(template_toggle_hide))
+        stop("template_toggle_hide must be a character string or NULL.")
+    if (!is.null(template_toggle_show) &&
+        !is.character(template_toggle_show))
+        stop("template_toggle_show must be a character string or NULL.")
+    if (!is.logical(print_cmd))
+        stop("print_cmd must be a boolean.")
+    if (!is.null(user_string) &&
+        !is.character(user_string))
+        stop("user_string must be a character string or NULL.")
     
     # Construct the CLI command
     cmd <- paste(
-        "npx staticrypt", paste(files, collapse = " "),
-        if (!is.null(config)) paste("--config", shQuote(config)) else "",
-        if (!is.null(directory)) paste("--directory", shQuote(directory)) else "",
-        if (decrypt) "--decrypt" else "",
-        if (!is.null(password)) paste("--password", shQuote(password)) else "",
-        if (recursive) "--recursive" else "",
-        if (!is.null(remember)) paste("--remember", remember) else "",
-        if (!is.null(salt)) paste("--salt", shQuote(salt)) else "",
-        if (!is.null(share)) paste("--share", shQuote(share)) else "",
-        if (share_remember) "--share-remember" else "",
-        if (short) "--short" else "",
-        if (!is.null(template)) paste("--template", shQuote(template)) else "",
-        if (!is.null(template_button)) paste("--template-button", shQuote(template_button)) else "",
-        if (!is.null(template_color_primary)) paste("--template-color-primary", shQuote(template_color_primary)) else "",
-        if (!is.null(template_color_secondary)) paste("--template-color-secondary", shQuote(template_color_secondary)) else "",
-        if (!is.null(template_instructions)) paste("--template-instructions", shQuote(template_instructions)) else "",
-        if (!is.null(template_error)) paste("--template-error", shQuote(template_error)) else "",
-        if (!is.null(template_placeholder)) paste("--template-placeholder", shQuote(template_placeholder)) else "",
-        if (!is.null(template_remember)) paste("--template-remember", shQuote(template_remember)) else "",
-        if (!is.null(template_title)) paste("--template-title", shQuote(template_title)) else "",
-        if (!is.null(template_toggle_hide)) paste("--template-toggle-hide", shQuote(template_toggle_hide)) else "",
-        if (!is.null(template_toggle_show)) paste("--template-toggle-show", shQuote(template_toggle_show)) else "",
-        if (!is.null(user_string)) user_string else ""
+        "npx staticrypt",
+        paste(files, collapse = " "),
+        if (!is.null(config))
+            paste("--config", shQuote(config))
+        else
+            "",
+        if (!is.null(directory))
+            paste("--directory", shQuote(directory))
+        else
+            "",
+        if (decrypt)
+            "--decrypt"
+        else
+            "",
+        if (!is.null(password))
+            paste("--password", shQuote(password))
+        else
+            "",
+        if (recursive)
+            "--recursive"
+        else
+            "",
+        if (!is.null(remember))
+            paste("--remember", remember)
+        else
+            "",
+        if (!is.null(salt))
+            paste("--salt", shQuote(salt))
+        else
+            "",
+        if (!is.null(share))
+            paste("--share", shQuote(share))
+        else
+            "",
+        if (share_remember)
+            "--share-remember"
+        else
+            "",
+        if (short)
+            "--short"
+        else
+            "",
+        if (!is.null(template))
+            paste("--template", shQuote(template))
+        else
+            "",
+        if (!is.null(template_button))
+            paste("--template-button", shQuote(template_button))
+        else
+            "",
+        if (!is.null(template_color_primary))
+            paste(
+                "--template-color-primary",
+                shQuote(template_color_primary)
+            )
+        else
+            "",
+        if (!is.null(template_color_secondary))
+            paste(
+                "--template-color-secondary",
+                shQuote(template_color_secondary)
+            )
+        else
+            "",
+        if (!is.null(template_instructions))
+            paste(
+                "--template-instructions",
+                shQuote(template_instructions)
+            )
+        else
+            "",
+        if (!is.null(template_error))
+            paste("--template-error", shQuote(template_error))
+        else
+            "",
+        if (!is.null(template_placeholder))
+            paste("--template-placeholder", shQuote(template_placeholder))
+        else
+            "",
+        if (!is.null(template_remember))
+            paste("--template-remember", shQuote(template_remember))
+        else
+            "",
+        if (!is.null(template_title))
+            paste("--template-title", shQuote(template_title))
+        else
+            "",
+        if (!is.null(template_toggle_hide))
+            paste("--template-toggle-hide", shQuote(template_toggle_hide))
+        else
+            "",
+        if (!is.null(template_toggle_show))
+            paste("--template-toggle-show", shQuote(template_toggle_show))
+        else
+            "",
+        if (!is.null(user_string))
+            user_string
+        else
+            ""
     )
     
     # Trim excess spaces
@@ -138,7 +258,7 @@ staticrypt_wrapper <- function(files,
     if (print_cmd)  {
         cat("Generated command:\n", cmd, "\n")
         return(cmd)
-        }
+    }
     check_system()
     exit_status <- system(cmd)
     return(invisible(exit_status))
