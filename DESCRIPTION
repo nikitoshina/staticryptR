@@ -1,6 +1,6 @@
 Package: staticryptR
 Title: Encrypt HTML Files Using 'staticrypt'
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Nikita", "Tkachenko", , "nikita@nikitoshina.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0003-8681-3335"))
