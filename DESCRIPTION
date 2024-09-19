@@ -1,12 +1,12 @@
 Package: staticryptR
 Title: Encrypt HTML Files Using 'staticrypt'
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: 
     person("Nikita", "Tkachenko", , "nikita@nikitoshina.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0009-0003-8681-3335"))
-Description: Provides a convenient interface to the 'staticrypt'---'Node.js' package for 
+Description: Provides a convenient interface to the 'staticrypt' by Robin Moisson <https://github.com/robinmoisson/staticrypt>---'Node.js' package for 
     adding a password protection layer to static HTML pages. This package can be 
-    integrated into the post-render process of Quarto documents to secure them 
+    integrated into the post-render process of 'quarto' documents to secure them 
     with a password. 
 License: MIT + file LICENSE
 Encoding: UTF-8
